@@ -11,7 +11,10 @@ export interface AbilityData {
 }
 
 export interface EffectChange {
-	effect_entries: EffectEntry[];
+	effect_entries: {
+		effect: string;
+		language: Language;
+	}[];
 	version_group: VersionGroup;
 }
 

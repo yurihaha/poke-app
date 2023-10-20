@@ -23,9 +23,9 @@ function PokemonListComponent() {
 	const loadMoreData = async () => {
 		if (nextPageUrl) {
 			try {
-				const response = await axios.get<PokemonList>(nextPageUrl);
-				setPokemonList((prevList) => [...prevList, ...response.data.results]);
-				setNextPageUrl(response.data.next);
+				const res = await axios.get<PokemonList>(nextPageUrl);
+				setPokemonList((prevList) => [...prevList, ...res.data.results]);
+				setNextPageUrl(res.data.next);
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			}
@@ -45,11 +45,7 @@ function PokemonListComponent() {
 			<ul>
 				{pokemonList.map((pokemon, index) => (
 					<li key={index}>
-						<Link to={`/detail/${index + 1}`}>
-							{' '}
-							{/* 각 포켓몬의 URL 페이지로 이동하는 Link */}
-							{pokemon.name}
-						</Link>
+						<Link to={`/detail/${index + 1}`}>{pokemon.name}</Link>
 					</li>
 				))}
 			</ul>
