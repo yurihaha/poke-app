@@ -12,3 +12,34 @@ React, TypeScript, Recoil, Styled-component
 3. Detail : detail/id 로 페이지 이동해서 포켓몬 상세 정보 가져옴, 진화단계 표시
 
 
+### 폴더구조
+
+```
+📦 poke-app
+├─ package-lock.json
+├─ package.json
+├─ public
+├─ src
+│  ├─ api
+│  │  └─ pokemonapi.ts
+│  ├─ assets
+│  │  └─ pokemonball.png
+│  ├─ components
+│  │  └─ PokemonSearch.tsx
+│  ├─ hooks
+│  │  └─ useInfiniteScroll.tsx
+│  ├─ index.css
+│  ├─ index.tsx
+│  ├─ interfaces
+│  │  ├─ abilityTypes.ts
+│  │  └─ pokemonTypes.ts
+│  ├─ pages
+│  │  ├─ Detail.tsx
+│  │  └─ Home.tsx
+│  ├─ recoil
+│  │  └─ atom.ts
+│  ├─ reportWebVitals.ts
+│  └─ setupTests.ts
+└─ tsconfig.json
+```
+
