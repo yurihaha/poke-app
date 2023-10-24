@@ -1,12 +1,14 @@
 import { atom } from 'recoil';
-
-type Pokemon = {
-	name: string;
-	url: string;
-};
+import { Pokemon } from '../interfaces/pokemonTypes';
+import { AbilityData } from '../interfaces/abilityTypes';
 
 export const pokemonListState = atom<Pokemon[]>({
 	key: 'pokemonListState',
+	default: [],
+});
+
+export const abilityDataState = atom<AbilityData[]>({
+	key: 'abilityDataState',
 	default: [],
 });
 
