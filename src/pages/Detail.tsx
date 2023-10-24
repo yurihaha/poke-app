@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import {
-	AbilityData,
-	FlavorTextEntry,
-	Name,
-} from '../interfaces/ abilityTypes';
+import { fetchAbilityData } from '../api/pokemonapi';
+import { AbilityData, FlavorTextEntry, Name } from '../interfaces/abilityTypes';
+import pokemonball from '../assets/pokemonball.png';
 
 function Detail() {
 	const { id } = useParams();
 	const [abilityData, setAbilityData] = useState<AbilityData | null>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		axios
-			.get(`https://pokeapi.co/api/v2/ability/${id}/`)
+		setIsLoading(true);
+		fetchAbilityData(id)
 			.then((res) => {
-				const data: AbilityData = res.data;
+				const data: AbilityData = res;
 				setAbilityData(data);
+				setIsLoading(false);
 			})
 			.catch((error) => {
 				console.error('Error fetching ability data:', error);
+				setIsLoading(false);
 			});
 	}, [id]);
 
@@ -44,13 +44,15 @@ function Detail() {
 	return (
 		<div>
 			<h2>Ability Detail</h2>
-			{abilityData && (
+			{isLoading ? (
 				<div>
-					<h3>
-						포켓몬 이름: {abilityData.name} {abilityData.id}
-					</h3>
+					<img src={pokemonball} alt='Loading' />
+				</div>
+			) : abilityData ? (
+				<div>
+					<h3>포켓몬 이름: {abilityData.name}</h3>
 					<br />
-					<p>EffectChange(이팩트 체인지)</p>
+					<p>EffectChange</p>
 					<ul>
 						{abilityData?.effect_changes.map((entry, index) => (
 							<li key={index}>
@@ -89,6 +91,8 @@ function Detail() {
 						))}
 					</ul>
 				</div>
+			) : (
+				<div>포켓몬 기술 없음</div>
 			)}
 		</div>
 	);
