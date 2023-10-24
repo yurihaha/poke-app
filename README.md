@@ -2,9 +2,9 @@
 React, TypeScript, Recoil, Styled-component
 
 ### `npm start`
-cd poke-app 
-npm start
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. cd poke-app 
+2. npm start
+3. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `구현기능`
 1. 포켓몬 순차적으로 List 뿌리기
